@@ -878,3 +878,22 @@ h2::before{
     font-size: 1.4rem;
     text-transform: uppercase;
    }
+
+   @media (max-width: 768px){
+    section{
+        padding: 2rem 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .card{
+        height: 180px !important;
+        margin-bottom: 15px !important;
+    }
+    .container-skills{
+        padding: 1.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+    h1, h2{
+        margin-bottom: 1rem !important;
+        font-size: 1.8rem !important;
+    }
+   }
