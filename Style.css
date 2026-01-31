@@ -1,0 +1,880 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #070705;
+    font-family: Arial, sans-serif;
+    font-size: larger;
+    padding-top: 80px;
+}
+
+h1{
+  color: white;
+  text-align: center;
+  animation: caer-titulo 1s ease-out;
+}
+
+h2{
+    text-align: center;
+    position: relative;
+    font-size: 2em;
+    color: #89A09A;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 8px;
+    background-color: #89A09A;
+}
+
+#Academico{
+ background-color: #121416;
+ border: 1px solid #2d3436;
+ border-radius: 10px;
+ padding: 40px;
+ margin: 40px auto;
+ width: 90%;
+ max-width: 1200px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+ text-align: center;
+ gap: 20px;
+}
+
+#Academico p{
+    color: #DAE0E2;
+}
+
+#Academico:hover{
+    border-color: white;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.modo-oscuro{
+    background-color: #121212;
+    color:aliceblue;
+}
+
+.modo-oscuro .tarjeta{
+    background-color: #1e1e1e;
+    border-color: aquamarine;
+    color: #0e0e0e
+}
+
+.galeria-materias{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    animation: aparecer-suave 1.5s ease-out;
+    animation-fill-mode: backwards;
+    animation-delay: 0.5s;
+}
+
+.boton-materia{
+   position: relative;
+   width: 250px;
+   height: 250px;
+   background-color: #3E4B51;
+   border: 1px solid #6F737E;
+   border-radius: 20px;
+   overflow: hidden;
+   cursor: pointer;
+   transition: all 0.4s ease;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.boton-materia img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(6px);
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+}
+
+.titulo-overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    text-shadow: 0 2px 4px black;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.boton-materia:hover{
+    transform: translateY(-10px);
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.boton-materia:hover img{
+    filter: blur(0) brightness(1);
+    transform: scale(1.2);
+}
+.boton-materia:hover .titulo-overlay{
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.boton-volver{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    transition: background 0.3s;
+}
+
+.boton-volver{
+    background-color: #004494;
+}
+
+@keyframes caer-titulo{
+    0%{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
+@keyframes aparecer-suave{
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background-color: #3E4B51;
+    border-bottom: 1px solid #6F737E;
+}
+
+.navbar a{
+    color: white;
+    text-decoration:  none;
+    font-size: 1.1em;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover{
+    color: #89A09A;
+}
+
+.btn-nav{
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.btn-nav:hover{
+    background-color: white;
+    color: #0056b3;
+}
+
+@media (max-width: 600px){
+    .navbar{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .navbar a{
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
+        background-color: rgba(255, 2500, 255, 0.1);
+        border-radius: 5px;
+    }
+    .btn-nav{
+        margin: 10px auto;
+        width: 80%;
+        display: block;
+    }
+    body{
+        padding-top: 0;
+    }
+}
+
+
+/* =========================================
+   ESTILOS PÁGINAS DE DETALLE (MATERIAS)
+   ========================================= */
+
+    body.pagina.detalle{
+        background-color: #070705 !important;
+        color: #C1C0AE;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+    }
+
+    .nav-detalle{
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .btn-regresar{
+        color: #89A09A;
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid #6F737E;
+        padding: 10px 20px;
+        border-radius: 30px;
+        background: rgba(7, 7, 5, 0.8);
+        transition: all 0.3s ease;
+    }
+
+    .btn-regresar:hover{
+        background: #3E4B51;
+        color: #fff;
+        border-color: #89A09A;
+    }
+
+    .hero-materia{
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+        border-bottom: 1px solid #3E4B51;
+    }
+
+    .hero-content h1{
+        font-size: 3.5rem;
+        margin: 15px 0;
+        color: #89A09A;
+        background: none;
+        -webkit-text-fill-color: initial;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .etiqueta-semestre{
+        background: #3E4B51;
+        color: #C1C0AE;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: 1px solid #6F737E;
+    }
+
+    .hero-resumen{
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        color: white;
+    }
+
+    .hero-img i{
+        font-size: 15rem;
+        position: absolute;
+        right: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.03);
+        z-index: -1;
+    }
+
+    .contenedor-principal{
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .seccion-laboral h2, .seccion-temario h2{
+        color: #89A09A;
+        border-left: 5px solid #89A09A;
+        padding-left: 15px;
+        margin-bottom: 30px;
+    }
+    .seccion-laboral p{
+        color: white;
+        text-align: center;
+    }
+
+    .grid-laboral{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 70px;
+        margin-bottom: 50px;
+    }
+
+    .grid-laboral h3{
+        text-align: center;
+    }
+
+    .grid-laboral p{
+        color: white;
+        text-align: center;
+    }
+
+    .item-tema{
+        background: rgba(62, 75, 81, 0.2);
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid #3E4B51;
+    }
+
+    .item-tema summary{
+        padding: 15px 20px;
+        cursor: pointer;
+        font-weight: bold;
+       color: #89A09A;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        transition: background 0.3s;
+    }
+
+    .item.tema summary:hover{
+        background: #3E4B51;
+        color: #fff;
+    }
+
+    .item-tema summary::after{
+        content: "+";
+        font-weight: bold;
+        color: #89A09A;
+        font-size: 1.5rem;
+    }
+
+    .item-tema[open] summary::after{
+        content: "-";
+    }
+
+    .item-tema p{
+        padding: 20px;
+        color: #fff;
+        line-height: 1.6;
+        border-top: 1px solid #3E4B51;
+    }
+
+    footer{
+        text-align: center;
+        padding: 20px;
+        color: #555;
+        font-size: 0.8rem;
+        margin-top: 50px;
+    }
+
+    /* =========================================
+    SECCIÓN DE HABILIDADES (MODO OSCURO)
+    ========================================= */
+
+   #Skills{
+    background-color: #121416;
+    border: 1px solid #2d3436;
+    border-radius: 5px;
+    padding: 40px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+    color: #DAE0E2;
+    text-align: center;
+   }
+
+   #Skills h2{
+    color: #89A09A;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+   }
+
+   .skill-item{
+    margin-bottom: 25px;
+    text-align: left;
+    padding: 0 20px;
+   }
+
+   .skill-texto{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #b2bec3;
+   }
+
+   .barra-fondo{
+    width: 100%;
+    height: 14px;
+    background-color: #2d3436;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset0 1px 3px rgba(0, 0, 0, 0.6);
+   }
+
+   .barra-progreso{
+    height: 100%;
+    background-color: #89a09a;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #586e68 0%, #89a09a 100%);
+    animation: cargarBarra 10s ease-out forwards;
+    max-width: 0;
+    width: 100%;
+   }
+
+   @keyframes cargarBarra{
+       from{
+           max-width: 0%;
+       }
+       to{
+           max-width: 100%;
+       }
+   }
+
+   #skills:hover{
+    border-color: #89a09a;
+   }
+
+   #Skills:hover .barra-progreso{
+    filter: brightness(1.2);
+   }
+
+
+   /* =========================================
+   SECCIÓN HOBBIES 
+   ========================================= */
+
+   #Hobbies{
+    background-color: #121416;
+    border: 1px solid #2d3436;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    color: #DAE0E2;
+   }
+
+   #Hobbies h2{
+    color: #89A09A;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+   }
+
+   #Hobbies p{
+    color: #b2bec3;
+    margin-bottom: 30px;
+   }
+
+   #Hobbies:hover{
+    border-color: #89A09A;
+   }
+
+   #Hobbies .grid-materias{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+   }
+
+   #Hobbies .boton-materia{
+    flex: 0 1 250px;
+   }
+
+   /* =========================================
+   FOOTER (PIE DE PÁGINA)
+   ========================================= */
+
+   .footer-fin{
+    color: #b2bec3;
+    padding: 40px 0;
+    margin-top: 40px;
+    border-top: 1px solid #2d3436;
+    text-align: center;
+   }
+
+   .footer-contenido h3{
+    color: #89a09a;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+   }
+
+   .footer-contenido p{
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+   }
+
+   .redes-sociales{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+   }
+
+   .redes-sociales a{
+    color: #DAE0E2;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+   }
+
+   .redes-sociales a:hover{
+    color: #89a09a;
+    transform: translateY(-5px);
+   }
+
+   /* =========================================
+   SECCIÓN CALIFICACIÓN
+   ========================================= */
+
+   #calificacion{
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #121416;
+    border-top: 1px solid #2d3436;
+    margin-top: 40px;
+    color: #DAE0E2;
+   }
+
+   #calificacion h3{
+    text-transform: uppercase;
+    color: #89A09A;
+   }
+
+   .contenedor-estrellas{
+    font-size: 1.5rem;
+    margin: 20px 0;
+    cursor: pointer;
+   }
+
+   .estrella{
+    color: #b2bec3;
+    transition: color 0.2s, transform 0.2s;
+    margin: 0 5px;
+   }
+
+   .estrella.activa{
+    color: #f1c40f;
+    text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+   }
+
+   .estrella:hover{
+    transform: scale(1.2);
+   }
+
+ 
+
+/* =========================================
+   ESTILOS PARA PÁGINAS DE HOBBIES 
+   ========================================= */
+
+   .detalle-hobby{
+    text-align: center;
+    padding: 20px 20px 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+   }
+
+   .detalle-hobby h1{
+    color: #89A09A;
+    font-size: 3rem;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+   }
+
+   .galeria-moderna{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+   }
+
+   .card-focus{
+    position: relative;
+    width: 400px;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+   }
+
+   .card-focus img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+
+   .card-focus:hover{
+    box-shadow: 0 0 30px rgba(137, 160, 154, 0.4);
+    border-color: #89A09A;
+   }
+
+   .card-focus:hover img{
+    transform: scale(1.15);
+   }
+
+   .texto-hobby {
+    background: rgba(62, 75, 81, 0.4);
+    padding: 25px;
+    border-radius: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 2px solid #6F737E;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .texto-hobby:hover{
+    border-color: #89A09A;
+    box-shadow: 0 20px 50px rgba(137, 160, 154, 0.3);
+    transform: translateY(-5px);
+    background-color: #1e2124;
+   }
+
+   .texto-hobby p{
+    color: #b2bec3;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 500;
+   }
+
+ /* =========================================
+   HOBBY GYM
+   ========================================= */
+  .card-focus2{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+   }
+
+   .card-focus2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+   .card-focus2:hover{
+    box-shadow: 0 0 30px rgba(137, 160, 154, 0.4);
+    border-color: #89A09A;
+   }
+
+   .card-focus2:hover img{
+    transform: scale(1.15);
+   }
+
+   .card-focus2:hover .card-info{
+    transform: translateY(0);
+   }
+
+   /* =========================================
+   HOBBY mtb fotos
+   ========================================= */
+
+
+   .card-focus3{
+    position: relative;
+    width: 400px;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+   }
+
+   .card-focus3 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+
+
+   .card-focus3:hover{
+    box-shadow: 0 0 30px rgba(137, 160, 154, 0.4);
+    border-color: #89A09A;
+   }
+
+   .card-focus3:hover img{
+    transform: scale(1.15);
+   }
+
+   .card-focus3:hover .card-info{
+    transform: translateY(0);
+   }
+
+   .fila-mascota{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+   }
+
+   .fila-mascota .texto-hobby{
+    margin: 0;
+    text-align: left;
+    max-width: 600px;
+    flex: 1;
+   }
+
+   .fila-mascota .card-focus{
+    flex-shrink: 0;
+   }
+
+
+   /* =========================================
+   tarjetas hobby
+   ========================================= */
+
+   .card-info{
+    background-color: #1e2124 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    text-align: center !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.4s ease !important;
+   }
+
+   .card-focus .card-info,
+   .card-focus2 .card-info,
+   .card-focus3 .card-info {
+    position: absolute !important;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    transform: translateY(150%); /* Oculto abajo */
+    background: transparent!important;
+    box-shadow: none !important;
+    padding: 15px !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #b2bec3 !important;
+    pointer-events: none;
+    border-radius: 0 !important;
+    border: none !important;
+   }
+
+   
+   .card-focus:hover .card-info,
+   .card-focus2:hover .card-info,
+   .card-focus3:hover .card-info {
+    transform: translateY(0) !important; 
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+   }
+   
+   .card-focus .card-info p,
+   .card-focus2 .card-info p,
+   .card-focus3 .card-info p {
+       margin: 0;
+       color: #FFFFFF !important;
+       font-weight: bold;
+       font-size: 1.3rem;
+       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                    -2px -2px 4px rgba(0, 0, 0, 0.8);
+        margin-right: 0 !important;
+        text-align: center !important;
+        width: 100%;
+   }
+
+   
+   .grid-laboral .card-info,
+   .seccion-laboral .card-info {
+    position: relative !important;
+    transform: none !important; 
+    margin: 0 !important;
+    height: 150px !important;
+
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 1 !important;
+    background-color: #1e2124;
+   }
+
+
+   .grid-laboral .card-info p,
+   .seccion-laboral .card-info p {
+    color: #FFFFFF !important; 
+    font-size: 1.1rem;
+   }
+
+
+   .grid-laboral .card-info:hover,
+   .seccion-laboral .card-info:hover {
+       transform: translateY(-10px) !important;
+       border-color: #89A09A !important;
+       box-shadow: 0 0 25px rgba(137, 160, 154, 0.3) !important;
+       background-color: #181a1b !important;
+   }
+
+   .card-info h3{
+    color: #89A09A;
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+   }
